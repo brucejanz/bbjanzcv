@@ -1,1 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bruce B. Janz — Philosophy in Place</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg: #F8F6F1;
+      --ink: #1A1A2E;
+      --ink-light: #4a4a6a;
+      --accent: #8B6914;
+      --accent-light: #c49a2a;
+      --rule: #d8d3c8;
+      --card-bg: #ffffff;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: rgba(248,246,241,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* topographic SVG background */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cg fill='none' stroke='%238B6914' stroke-width='0.6' opacity='0.12'%3E%3Cellipse cx='400' cy='400' rx='380' ry='200'/%3E%3Cellipse cx='400' cy='400' rx='340' ry='170'/%3E%3Cellipse cx='400' cy='400' rx='300' ry='140'/%3E%3Cellipse cx='400' cy='400' rx='260' ry='110'/%3E%3Cellipse cx='400' cy='400' rx='220' ry='82'/%3E%3Cellipse cx='400' cy='400' rx='180' ry='56'/%3E%3Cellipse cx='400' cy='400' rx='140' ry='34'/%3E%3Cellipse cx='400' cy='400' rx='100' ry='18'/%3E%3Cellipse cx='400' cy='400' rx='60' ry='8'/%3E%3Cellipse cx='150' cy='600' rx='200' ry='110'/%3E%3Cellipse cx='150' cy='600' rx='160' ry='85'/%3E%3Cellipse cx='150' cy='600' rx='120' ry='62'/%3E%3Cellipse cx='150' cy='600' rx='80' ry='40'/%3E%3Cellipse cx='650' cy='200' rx='220' ry='120'/%3E%3Cellipse cx='650' cy='200' rx='180' ry='94'/%3E%3Cellipse cx='650' cy='200' rx='140' ry='70'/%3E%3Cellipse cx='650' cy='200' rx='100' ry='48'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 900px 900px;
+      background-position: right -100px top -100px;
+      background-repeat: no-repeat;
+      pointer-events: none;
+    }
+
+    .hero-content { max-width: 760px; position: relative; }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--accent);
+      margin-bottom: 2rem;
+      min-height: 2em;
+    }
+
+    .hero-role {
+      font-size: 0.95rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.55rem 1.3rem;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      font-weight: 500;
+    }
+    .btn:hover { background: var(--accent); color: #fff; }
+    .btn.filled { background: var(--accent); color: #fff; }
+    .btn.filled:hover { background: var(--accent-light); border-color: var(--accent-light); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5.5rem 3rem; }
+    section:nth-child(even) { background: #fff; }
+
+    .section-inner { max-width: 960px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      line-height: 1.2;
+      margin-bottom: 2.5rem;
+      padding-left: 1.2rem;
+      border-left: 3px solid var(--accent);
+      position: relative;
+    }
+
+    /* reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-meta {
+      border-top: 1px solid var(--rule);
+      padding-top: 1.5rem;
+    }
+    .meta-item { margin-bottom: 1.4rem; }
+    .meta-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    .meta-value { font-size: 0.88rem; color: var(--ink-light); line-height: 1.5; }
+    .meta-value a { color: var(--ink-light); }
+    .meta-value a:hover { color: var(--accent); }
+
+    .about-bio p { margin-bottom: 1.2rem; font-size: 1.02rem; }
+
+    .profile-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; }
+    .profile-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.85rem;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .profile-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── RESEARCH ── */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+    .research-card {
+      border: 1px solid var(--rule);
+      padding: 1.4rem;
+      background: var(--card-bg);
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .research-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .research-icon { font-size: 1.4rem; margin-bottom: 0.6rem; }
+    .research-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+    .research-desc { font-size: 0.83rem; color: var(--ink-light); line-height: 1.55; }
+
+    /* ── WORK ── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .pub-card {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+    .pub-card:hover { border-color: var(--accent); }
+    .pub-type {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .pub-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      line-height: 1.35;
+      margin-bottom: 0.6rem;
+      flex: 1;
+    }
+    .pub-info { font-size: 0.8rem; color: var(--ink-light); margin-bottom: 0.9rem; }
+    .pub-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      align-self: flex-start;
+    }
+    .pub-link:hover { text-decoration: underline; }
+
+    /* ── CURRENT ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.6rem; bottom: 0;
+      width: 1px;
+      background: var(--rule);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.2rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.35rem;
+      top: 0.55rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: var(--bg);
+    }
+    .timeline-year {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+    .timeline-desc { font-size: 0.88rem; color: var(--ink-light); }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .contact-block h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .contact-item { margin-bottom: 0.75rem; font-size: 0.92rem; color: var(--ink-light); }
+    .contact-item a { color: var(--ink-light); text-decoration: none; }
+    .contact-item a:hover { color: var(--accent); text-decoration: underline; }
+    .contact-label { font-weight: 500; color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem 3rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-name">Bruce B. Janz</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#work">Publications</a></li>
+    <li><a href="#current">Current</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Professor of Philosophy · University of Central Florida</div>
+    <h1>Bruce B. Janz</h1>
+    <div class="hero-tagline" id="tagline"></div>
+    <p class="hero-role">
+      Co-Director, Center for Humanities and Digital Research (CHDR)<br>
+      Graduate Faculty, Texts and Technology Ph.D. Program<br>
+      Senior Research Associate, Allan Gray Centre for Leadership Ethics, Rhodes University
+    </p>
+    <div class="hero-links">
+      <a href="#work" class="btn filled">Selected Work</a>
+      <a href="#about" class="btn">About</a>
+      <a href="http://bbja.nz" class="btn" target="_blank" rel="noopener">bbja.nz ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label reveal">Philosopher · Digital Humanist · Administrator</div>
+    <h2 class="reveal">About</h2>
+    <div class="about-grid reveal">
+      <div class="about-meta">
+        <div class="meta-item">
+          <div class="meta-label">Position</div>
+          <div class="meta-value">Professor of Humanities<br>University of Central Florida<br>Orlando, Florida</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Visiting / Affiliated</div>
+          <div class="meta-value">Senior Research Associate<br>Allan Gray Centre for Leadership Ethics<br>Rhodes University, South Africa</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Education</div>
+          <div class="meta-value">
+            PhD Philosophy, University of Waterloo, 1992<br>
+            MA Philosophy, University of Waterloo, 1985<br>
+            BA (Hons), Philosophy, University of Waterloo, 1983
+          </div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Citizenship</div>
+          <div class="meta-value">Canada · USA</div>
+        </div>
+      </div>
+      <div class="about-bio">
+        <p>I am a philosopher whose work sits at the intersection of African philosophy, theories of place and space, phenomenology, and digital humanities. The thread running through all of it is a single question: <em>what does it mean to think from somewhere?</em> — to do philosophy that is grounded in a particular place, culture, and tradition, rather than pretending to a view from nowhere.</p>
+        <p>My book <em>African Philosophy and Enactivist Cognition: The Space of Thought</em> (Bloomsbury, 2023) brings together African philosophical traditions and cognitive science to ask how thought is constituted through embodied, emplaced engagement with the world. Earlier work — including <em>Philosophy in an African Place</em> (Lexington, 2009) and the edited volume <em>Place, Space and Hermeneutics</em> (Springer, 2017) — developed the framework of "philosophy-in-place" that continues to anchor my research.</p>
+        <p>At UCF I founded and direct the Center for Humanities and Digital Research, which supports digital scholarship across the humanities. I am also a series co-editor (with Uchenna Okeja) of <em>African Philosophy: Critical Perspectives and Global Dialogue</em> at Lexington/Bloomsbury — 19 volumes to date.</p>
+        <div class="profile-links">
+          <a href="https://orcid.org/0000-0003-3122-1618" class="profile-link" target="_blank" rel="noopener">ORCID</a>
+          <a href="https://scholar.google.com/citations?user=aDQDZDAAAAAJ&hl=en" class="profile-link" target="_blank" rel="noopener">Google Scholar</a>
+          <a href="https://www.researchgate.net/profile/Br-Janz" class="profile-link" target="_blank" rel="noopener">ResearchGate</a>
+          <a href="https://ucf.academia.edu/BruceJanz" class="profile-link" target="_blank" rel="noopener">Academia.edu</a>
+          <a href="https://cah.ucf.edu/philosophy/faculty-staff/profile/19" class="profile-link" target="_blank" rel="noopener">UCF Profile</a>
+          <a href="http://chdr.cah.ucf.edu/" class="profile-link" target="_blank" rel="noopener">CHDR</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-inner">
+    <div class="section-label reveal">Interests &amp; Methods</div>
+    <h2 class="reveal">Research Areas</h2>
+    <div class="research-grid">
+      <div class="research-card reveal">
+        <div class="research-icon">🌍</div>
+        <div class="research-title">African Philosophy</div>
+        <div class="research-desc">The methods, traditions, and futures of philosophy on and from the African continent — from sage philosophy to contemporary analytical and continental engagements.</div>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">📍</div>
+        <div class="research-title">Place, Space &amp; Urban Studies</div>
+        <div class="research-desc">Hermeneutics of place; philosophy-in-place as method; urban environments as sites of philosophical inquiry; virtual and digital space.</div>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">🧠</div>
+        <div class="research-title">Enactivism &amp; Cognitive Science</div>
+        <div class="research-desc">Embodied, embedded cognition in dialogue with African philosophy. Collaborative work with phenomenologists and neuroscientists on awe, wonder, and experience.</div>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">💻</div>
+        <div class="research-title">Digital Humanities &amp; AI</div>
+        <div class="research-desc">Theories of digitality, big data, and virtuality; philosophical questions raised by AI; founding director of UCF's Center for Humanities and Digital Research.</div>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">🔍</div>
+        <div class="research-title">Metaphilosophy</div>
+        <div class="research-desc">What philosophy is and where it happens. Questions and questioning as philosophical method. Philosophy outside the discipline's traditional borders.</div>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">🌐</div>
+        <div class="research-title">Contemporary European Philosophy</div>
+        <div class="research-desc">Phenomenology, hermeneutics, poststructuralism, Deleuze — as tools for cross-cultural and intercultural philosophical dialogue.</div>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">🎓</div>
+        <div class="research-title">Liberal Arts &amp; Interdisciplinarity</div>
+        <div class="research-desc">Scholarly cognition; the theory and practice of interdisciplinary education; the role of humanities in the contemporary university.</div>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">✨</div>
+        <div class="research-title">Mysticism &amp; Religion</div>
+        <div class="research-desc">Philosophy and history of mysticism, from Jacob Boehme to contemporary comparative religious thought. The persistence of the spiritual in secular philosophy.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<section id="work">
+  <div class="section-inner">
+    <div class="section-label reveal">Books, Articles &amp; Chapters</div>
+    <h2 class="reveal">Selected Publications</h2>
+    <div class="work-grid">
+      <div class="pub-card reveal">
+        <div class="pub-type">Book · Single Authored</div>
+        <div class="pub-title">African Philosophy and Enactivist Cognition: The Space of Thought</div>
+        <div class="pub-info">Bloomsbury Publishing, 2023</div>
+        <a href="https://www.bloomsbury.com/us/african-philosophy-and-enactivist-cognition-9781350292185/" class="pub-link" target="_blank" rel="noopener">View book ↗</a>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-type">Book · Single Authored</div>
+        <div class="pub-title">Philosophy in an African Place</div>
+        <div class="pub-info">Lexington Books, 2009 (Paperback 2011)</div>
+        <a href="https://rowman.com/ISBN/9780739128916" class="pub-link" target="_blank" rel="noopener">View book ↗</a>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-type">Book · Edited</div>
+        <div class="pub-title">Place, Space and Hermeneutics</div>
+        <div class="pub-info">Springer Press, 2017 · 37 chapters, 531 pages</div>
+        <a href="https://link.springer.com/book/10.1007/978-3-319-52214-2" class="pub-link" target="_blank" rel="noopener">View book ↗</a>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-type">Book · Co-Authored</div>
+        <div class="pub-title">A Neurophenomenology of Awe and Wonder</div>
+        <div class="pub-info">Gallagher, Janz et al. · Palgrave Macmillan, 2015</div>
+        <a href="https://link.springer.com/book/10.1057/9781137496058" class="pub-link" target="_blank" rel="noopener">View book ↗</a>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-type">Article · 2025</div>
+        <div class="pub-title">Binaries and Tuan's Humanism: The Challenge of Neo-Gnosticism</div>
+        <div class="pub-info">GeoHumanities, October 2025</div>
+        <a href="https://doi.org/10.1080/2373566X.2025.2544555" class="pub-link" target="_blank" rel="noopener">Read ↗</a>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-type">Chapter · Forthcoming 2026</div>
+        <div class="pub-title">Heidegger and Being Digital: AI, Cognition, and the Question of Non-Human Dwelling</div>
+        <div class="pub-info">In Karamercan, ed. <em>Resituating Heidegger's Topology of Being</em> · Bloomsbury</div>
+        <span class="pub-link" style="cursor:default;opacity:0.5">Forthcoming</span>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-type">Chapter · 2024</div>
+        <div class="pub-title">Spaces of Virtue in Universities</div>
+        <div class="pub-info">In Stefanovic, ed. <em>Conversations on Ethical Leadership</em> · University of Toronto Press, 2024</div>
+        <a href="https://utorontopress.com/9781487552497/conversations-on-ethical-leadership/" class="pub-link" target="_blank" rel="noopener">View ↗</a>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-type">Book Series · Editor</div>
+        <div class="pub-title">African Philosophy: Critical Perspectives and Global Dialogue</div>
+        <div class="pub-info">Co-editor with Uchenna Okeja · Lexington/Bloomsbury · 19 volumes since 2016</div>
+        <a href="https://www.bloomsbury.com/us/series/african-philosophy-critical-perspectives-and-global-dialogue/" class="pub-link" target="_blank" rel="noopener">View series ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENT -->
+<section id="current">
+  <div class="section-inner">
+    <div class="section-label reveal">2024–2026</div>
+    <h2 class="reveal">Current &amp; Recent</h2>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-year">2026–27</div>
+        <div class="timeline-title">UCF Full-Year Sabbatical</div>
+        <div class="timeline-desc">A year to pursue extended research projects in African philosophy and digital humanities.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2025–</div>
+        <div class="timeline-title">Senior Research Associate, Rhodes University</div>
+        <div class="timeline-desc">Allan Gray Centre for Leadership Ethics, Makhanda, South Africa.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">April–June 2025</div>
+        <div class="timeline-title">Research Fellowship, STIAS</div>
+        <div class="timeline-desc">Stellenbosch Institute for Advanced Study, South Africa. <a href="https://stias.ac.za/fellows/cohort/2025/" target="_blank" rel="noopener">stias.ac.za ↗</a></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">March 2025</div>
+        <div class="timeline-title">GloPhi Fellowship, Hildesheim University</div>
+        <div class="timeline-desc">Short-term fellowship at the Center for Advanced Studies — Philosophizing in a Globalized World, Germany. Opening plenary at <em>Places of African Philosophies</em>.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Forthcoming 2026</div>
+        <div class="timeline-title">Transhumanism and Moral Enhancement</div>
+        <div class="timeline-desc">Chapter in Chimakonam, ed. <em>Transhumanism in Africa</em> (Springer). <a href="https://link.springer.com/book/9783032226716" target="_blank" rel="noopener">View ↗</a></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Forthcoming</div>
+        <div class="timeline-title">Heidegger and Being Digital</div>
+        <div class="timeline-desc">AI, cognition, and the question of non-human dwelling. In Karamercan, ed. <em>Resituating Heidegger's Topology of Being</em> (Bloomsbury).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label reveal">Get in Touch</div>
+    <h2 class="reveal">Contact</h2>
+    <div class="contact-grid reveal">
+      <div class="contact-block">
+        <h3>University</h3>
+        <div class="contact-item"><span class="contact-label">Email: </span><a href="mailto:bruce.janz@ucf.edu">bruce.janz@ucf.edu</a></div>
+        <div class="contact-item"><span class="contact-label">Office: </span>TCH 310-B, University of Central Florida</div>
+        <div class="contact-item"><span class="contact-label">Phone: </span><a href="tel:+14078232273">+1 (407) 823-2273</a></div>
+        <div class="contact-item"><span class="contact-label">UCF Profile: </span><a href="https://cah.ucf.edu/philosophy/faculty-staff/profile/19" target="_blank" rel="noopener">cah.ucf.edu ↗</a></div>
+        <div class="contact-item"><span class="contact-label">CHDR: </span><a href="http://chdr.cah.ucf.edu/" target="_blank" rel="noopener">chdr.cah.ucf.edu ↗</a></div>
+      </div>
+      <div class="contact-block">
+        <h3>Personal</h3>
+        <div class="contact-item"><span class="contact-label">Email: </span><a href="mailto:bbjanz@gmail.com">bbjanz@gmail.com</a></div>
+        <div class="contact-item"><span class="contact-label">Website: </span><a href="http://bbja.nz" target="_blank" rel="noopener">bbja.nz ↗</a></div>
+        <div class="contact-item"><span class="contact-label">Cell: </span><a href="tel:+14074534045">+1 (407) 453-4045</a></div>
+        <br>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem;">
+          <a href="https://orcid.org/0000-0003-3122-1618" class="profile-link" target="_blank" rel="noopener">ORCID</a>
+          <a href="https://scholar.google.com/citations?user=aDQDZDAAAAAJ&hl=en" class="profile-link" target="_blank" rel="noopener">Scholar</a>
+          <a href="https://www.researchgate.net/profile/Br-Janz" class="profile-link" target="_blank" rel="noopener">ResearchGate</a>
+          <a href="https://ucf.academia.edu/BruceJanz" class="profile-link" target="_blank" rel="noopener">Academia</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Bruce B. Janz &nbsp;·&nbsp; University of Central Florida &nbsp;·&nbsp; <a href="http://bbja.nz" style="color:inherit">bbja.nz</a>
+</footer>
+
+<script>
+  // Nav shadow on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Tagline typewriter
+  const phrases = [
+    'Philosophy doesn\'t happen nowhere.',
+    'Thinking from somewhere.',
+    'Place as the ground of thought.',
+  ];
+  let pi = 0, ci = 0, deleting = false, pause = 0;
+  const el = document.getElementById('tagline');
+  function type() {
+    if (pause > 0) { pause--; setTimeout(type, 60); return; }
+    const phrase = phrases[pi];
+    if (!deleting) {
+      el.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) { deleting = true; pause = 38; }
+      setTimeout(type, 68);
+    } else {
+      el.textContent = phrase.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; pause = 6; }
+      setTimeout(type, 34);
+    }
+  }
+  type();
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
