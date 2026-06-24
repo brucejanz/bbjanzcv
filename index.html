@@ -121,6 +121,13 @@
       line-height: 1.8;
       margin-bottom: 2.5rem;
     }
+    .hero-role a {
+      color: var(--ink-light);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      transition: color 0.2s;
+    }
+    .hero-role a:hover { color: var(--accent); }
 
     .hero-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
     .btn {
@@ -358,6 +365,7 @@
     <li><a href="#research">Research</a></li>
     <li><a href="#work">Publications</a></li>
     <li><a href="#current">Current</a></li>
+    <li><a href="research.html">Full Record</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -369,12 +377,13 @@
     <h1>Bruce B. Janz</h1>
     <div class="hero-tagline" id="tagline"></div>
     <p class="hero-role">
-      Co-Director, Center for Humanities and Digital Research (CHDR)<br>
-      Graduate Faculty, Texts and Technology Ph.D. Program<br>
-      Senior Research Associate, Allan Gray Centre for Leadership Ethics, Rhodes University
+      Co-Director, <a href="http://chdr.cah.ucf.edu/" target="_blank" rel="noopener">Center for Humanities and Digital Research (CHDR)</a><br>
+      Graduate Faculty, Texts and Technology Ph.D. Program, <a href="https://www.ucf.edu" target="_blank" rel="noopener">UCF</a><br>
+      Senior Research Associate, Allan Gray Centre for Leadership Ethics, <a href="https://www.ru.ac.za" target="_blank" rel="noopener">Rhodes University</a>
     </p>
     <div class="hero-links">
-      <a href="#work" class="btn filled">Selected Work</a>
+      <a href="research.html" class="btn filled">Full Research Record</a>
+      <a href="#work" class="btn">Selected Work</a>
       <a href="#about" class="btn">About</a>
       <a href="http://bbja.nz" class="btn" target="_blank" rel="noopener">bbja.nz ↗</a>
     </div>
@@ -390,18 +399,18 @@
       <div class="about-meta">
         <div class="meta-item">
           <div class="meta-label">Position</div>
-          <div class="meta-value">Professor of Humanities<br>University of Central Florida<br>Orlando, Florida</div>
+          <div class="meta-value">Professor of Humanities<br><a href="https://www.ucf.edu" target="_blank" rel="noopener">University of Central Florida</a><br>Orlando, Florida</div>
         </div>
         <div class="meta-item">
           <div class="meta-label">Visiting / Affiliated</div>
-          <div class="meta-value">Senior Research Associate<br>Allan Gray Centre for Leadership Ethics<br>Rhodes University, South Africa</div>
+          <div class="meta-value">Senior Research Associate<br>Allan Gray Centre for Leadership Ethics<br><a href="https://www.ru.ac.za" target="_blank" rel="noopener">Rhodes University</a>, South Africa</div>
         </div>
         <div class="meta-item">
           <div class="meta-label">Education</div>
           <div class="meta-value">
-            PhD Philosophy, University of Waterloo, 1992<br>
-            MA Philosophy, University of Waterloo, 1985<br>
-            BA (Hons), Philosophy, University of Waterloo, 1983
+            PhD Philosophy, <a href="https://uwaterloo.ca" target="_blank" rel="noopener">University of Waterloo</a>, 1992<br>
+            MA Philosophy, <a href="https://uwaterloo.ca" target="_blank" rel="noopener">University of Waterloo</a>, 1985<br>
+            BA (Hons), Philosophy, <a href="https://uwaterloo.ca" target="_blank" rel="noopener">University of Waterloo</a>, 1983
           </div>
         </div>
         <div class="meta-item">
@@ -530,6 +539,9 @@
         <div class="pub-info">Co-editor with Uchenna Okeja · Lexington/Bloomsbury · 19 volumes since 2016</div>
         <a href="https://www.bloomsbury.com/us/series/african-philosophy-critical-perspectives-and-global-dialogue/" class="pub-link" target="_blank" rel="noopener">View series ↗</a>
       </div>
+    </div>
+    <div class="reveal" style="margin-top:2.5rem;text-align:center;">
+      <a href="research.html" class="btn filled">View the full research record →</a>
     </div>
   </div>
 </section>

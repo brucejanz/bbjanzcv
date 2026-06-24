@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bruce B. Janz — Full Research Record</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F8F6F1;
+      --ink: #1A1A2E;
+      --ink-light: #4a4a6a;
+      --accent: #8B6914;
+      --accent-light: #c49a2a;
+      --rule: #d8d3c8;
+      --card-bg: #ffffff;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: rgba(248,246,241,0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .nav-back {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 7rem 3rem 4rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* sticky table of contents */
+    .toc {
+      position: sticky;
+      top: 6rem;
+      font-size: 0.78rem;
+    }
+    .toc-title {
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+    }
+    .toc ul { list-style: none; }
+    .toc li { margin-bottom: 0.45rem; }
+    .toc a {
+      color: var(--ink-light);
+      letter-spacing: 0.02em;
+    }
+    .toc a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── HEADER ── */
+    .record-head { margin-bottom: 3rem; }
+    .record-head .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+    .record-head h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .record-head p { color: var(--ink-light); max-width: 60ch; }
+
+    /* ── SECTIONS ── */
+    .rsection { margin-bottom: 3.5rem; scroll-margin-top: 6rem; }
+    .rsection > h2 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.4rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    h3.sub {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin: 1.6rem 0 0.8rem;
+    }
+
+    ul.entries { list-style: none; }
+    ul.entries li {
+      padding: 0.5rem 0 0.5rem 1.4rem;
+      position: relative;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    ul.entries li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.95rem;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.55;
+    }
+    ul.entries li:last-child { border-bottom: none; }
+    .yr { color: var(--accent); font-weight: 500; }
+    em { color: var(--ink); }
+
+    .meta-line { color: var(--ink-light); }
+
+    .two-col {
+      columns: 2;
+      column-gap: 2.5rem;
+    }
+    .two-col li { break-inside: avoid; }
+
+    footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2.5rem 3rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.78rem;
+      color: var(--ink-light);
+    }
+
+    @media (max-width: 860px) {
+      .page { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 1.5rem; }
+      .toc { position: static; margin-bottom: 1rem; border-bottom: 1px solid var(--rule); padding-bottom: 1rem; }
+      .toc ul { columns: 2; }
+      nav { padding: 1rem 1.5rem; }
+      .two-col { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Bruce B. Janz</span>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="page">
+
+  <!-- TABLE OF CONTENTS -->
+  <aside class="toc">
+    <div class="toc-title">On this page</div>
+    <ul>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#employment">Academic Employment</a></li>
+      <li><a href="#fellowships">Fellowships &amp; Visiting</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#grants">Grants &amp; Funding</a></li>
+      <li><a href="#books">Books</a></li>
+      <li><a href="#chapters">Book Chapters</a></li>
+      <li><a href="#papers">Journal Articles</a></li>
+      <li><a href="#reviews">Reviews &amp; Shorter Work</a></li>
+      <li><a href="#keynotes">Keynotes &amp; Plenaries</a></li>
+      <li><a href="#presentations">Presentations</a></li>
+      <li><a href="#workshops">Workshops Organized</a></li>
+      <li><a href="#media">Interviews &amp; Media</a></li>
+      <li><a href="#editorial">Editorial &amp; Advisory</a></li>
+      <li><a href="#supervision">Supervision</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#service">Service</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <div class="record-head">
+      <div class="eyebrow">Curriculum Vitae · Full Record</div>
+      <h1>Research &amp; Scholarly Record</h1>
+      <p>The complete record of publications, presentations, grants, supervision, teaching, and service for Bruce B. Janz, Professor of Philosophy, <a href="https://www.ucf.edu" target="_blank" rel="noopener">University of Central Florida</a>. Last updated June 2026.</p>
+    </div>
+
+    <!-- EDUCATION -->
+    <section class="rsection" id="education">
+      <h2>Education</h2>
+      <ul class="entries">
+        <li><span class="yr">1992</span> — PhD, Philosophy, <a href="https://uwaterloo.ca" target="_blank" rel="noopener">University of Waterloo</a>. Dissertation: <em>Jacob Boehme's Theory of Knowledge in Mysterium Magnum</em> (defended Oct. 1991).</li>
+        <li><span class="yr">1985</span> — MA, Philosophy, <a href="https://uwaterloo.ca" target="_blank" rel="noopener">University of Waterloo</a>. Thesis: <em>Martin Buber on the Problem of Individuation</em>.</li>
+        <li><span class="yr">1983</span> — Honours BA, Philosophy, <a href="https://uwaterloo.ca" target="_blank" rel="noopener">University of Waterloo</a>.</li>
+        <li><span class="yr">1980</span> — Bachelor of Religious Education, Religious Studies, <a href="https://www.briercrest.ca" target="_blank" rel="noopener">Briercrest College</a>.</li>
+      </ul>
+    </section>
+
+    <!-- EMPLOYMENT -->
+    <section class="rsection" id="employment">
+      <h2>Academic Employment</h2>
+      <h3 class="sub"><a href="https://www.ucf.edu" target="_blank" rel="noopener">University of Central Florida</a>, Orlando (2003– )</h3>
+      <ul class="entries">
+        <li>Professor of Humanities (2011– )</li>
+        <li>Director / Co-Director, <a href="http://chdr.cah.ucf.edu/" target="_blank" rel="noopener">Center for Humanities and Digital Research (CHDR)</a> (2007– )</li>
+        <li>Core Graduate Faculty, Texts and Technology Ph.D. Program (2012– )</li>
+        <li>Chair, Dept. of Philosophy (2008–2013)</li>
+        <li>Associate Chair, Dept. of Philosophy (2007–2008)</li>
+        <li>Director of the Humanities Program (2003–2013)</li>
+      </ul>
+      <h3 class="sub">Augustana University College / <a href="https://www.ualberta.ca/augustana" target="_blank" rel="noopener">University of Alberta</a>, Camrose (1992–2003)</h3>
+      <ul class="entries">
+        <li>Associate Professor of Philosophy</li>
+        <li>Director, Center for Interdisciplinary Research in the Liberal Arts (CIRLA)</li>
+      </ul>
+    </section>
+
+    <!-- FELLOWSHIPS -->
+    <section class="rsection" id="fellowships">
+      <h2>Fellowships, Lectureships &amp; Visiting Appointments</h2>
+      <ul class="entries">
+        <li><span class="yr">2025–</span> Senior Research Associate, Allan Gray Centre for Leadership Ethics, <a href="https://www.ru.ac.za" target="_blank" rel="noopener">Rhodes University</a>, Makhanda, South Africa.</li>
+        <li><span class="yr">2025</span> Research Fellowship, <a href="https://stias.ac.za/fellows/cohort/2025/" target="_blank" rel="noopener">Stellenbosch Institute for Advanced Study (STIAS)</a>, South Africa (April–June).</li>
+        <li><span class="yr">2025</span> Short-term fellowship, <a href="https://www.uni-hildesheim.de/glophi/" target="_blank" rel="noopener">GloPhi</a>, Center for Advanced Studies, <a href="https://www.uni-hildesheim.de" target="_blank" rel="noopener">Hildesheim University</a>, Germany (March).</li>
+        <li><span class="yr">2016</span> Visiting Lecturer, <a href="https://www.uct.ac.za" target="_blank" rel="noopener">University of Cape Town</a>, South Africa (August).</li>
+        <li><span class="yr">2008</span> Distinguished Visiting Lecturer, Philosophy, <a href="https://www.ru.ac.za" target="_blank" rel="noopener">Rhodes University</a>, South Africa (July–September).</li>
+        <li><span class="yr">1999</span> Visiting Scholar, <a href="https://www.fordham.edu" target="_blank" rel="noopener">Fordham University</a>, New York (March–June).</li>
+        <li><span class="yr">1998–99</span> Visiting Professor, Philosophy, <a href="https://www.uonbi.ac.ke" target="_blank" rel="noopener">University of Nairobi</a>, Kenya (August–February).</li>
+      </ul>
+    </section>
+
+    <!-- AWARDS -->
+    <section class="rsection" id="awards">
+      <h2>Awards</h2>
+      <ul class="entries two-col">
+        <li><span class="yr">2026–27</span> UCF Full Year Sabbatical</li>
+        <li><span class="yr">2024–25</span> UCF Research Incentive Award</li>
+        <li><span class="yr">2018–19</span> UCF Research Incentive Award</li>
+        <li><span class="yr">2017–18</span> UCF Full Year Sabbatical</li>
+        <li><span class="yr">2015–16</span> UCF Teaching Incentive Program Award</li>
+        <li><span class="yr">2013–14</span> UCF Research Incentive Award</li>
+        <li><span class="yr">1998–99</span> Augustana Full Year Sabbatical</li>
+      </ul>
+    </section>
+
+    <!-- GRANTS -->
+    <section class="rsection" id="grants">
+      <h2>Grants &amp; Funding</h2>
+      <ul class="entries">
+        <li><span class="yr">2021–2</span> Co-PI, <em>The Global Pandemic of 2020–2022</em> (Mark Kamrath, PI). Florida Humanities Council. $5,000.</li>
+        <li><span class="yr">2020</span> PI, <em>Expanding CHDR Infrastructure, Research, and Public Programming</em>. UCF Tech Fee Grant. $128,951.</li>
+        <li><span class="yr">2020–25</span> Co-PI, <em>Expanding CHDR</em> (Mark Kamrath, PI). NEH Challenge Grant. $193,736 of $331,778 total.</li>
+        <li><span class="yr">2012</span> Co-PI, <em>The Charles Brockden Brown Electronic Archive</em> (Mark Kamrath, PI). NEH. $200,000.</li>
+        <li><span class="yr">2012</span> Co-PI, <em>Vine Online</em> (Kristin Congdon, PI). NEA. $25,000.</li>
+        <li><span class="yr">2011–2013</span> Co-PI, <em>Space, Science and Spirituality: Simulating Awe and Wonder</em> (Shaun Gallagher, PI). Templeton Foundation. $300,000.</li>
+        <li><span class="yr">2010</span> Co-PI, <em>Florida High-Tech Corridor</em>. $40,000.</li>
+        <li><span class="yr">2009–2010</span> Co-PI, <em>INTx Expeditions</em> (with Phil Peters). TracStar/Cobham Industries. $131,425.</li>
+        <li><span class="yr">2007</span> Co-PI, <em>Using Digital Mapping in the Arts and Humanities</em>. UCF CAH. $18,582.</li>
+        <li><span class="yr">2007</span> Co-PI, <em>National Folkvine</em>. UCF CAH. $29,595.</li>
+        <li><span class="yr">1997</span> PI, SSHRC Occasional Conferences Funding (<em>Generating Surprises</em>). CAN$10,000.</li>
+      </ul>
+    </section>
+
+    <!-- BOOKS -->
+    <section class="rsection" id="books">
+      <h2>Books</h2>
+      <h3 class="sub">Single Authored</h3>
+      <ul class="entries">
+        <li><em><a href="https://www.bloomsbury.com/us/african-philosophy-and-enactivist-cognition-9781350292185/" target="_blank" rel="noopener">African Philosophy and Enactivist Cognition: The Space of Thought</a></em>. Bloomsbury Publishing, 2023.</li>
+        <li><em>Philosophy in an African Place</em>. Lanham, MD: Lexington Books. Hardcover 2009; Paperback 2011.</li>
+      </ul>
+      <h3 class="sub">Co-Authored</h3>
+      <ul class="entries">
+        <li>Shaun Gallagher, Bruce Janz, Lauren Reinerman, Patricia Bockelman &amp; Jörg Trempler. <em><a href="https://link.springer.com/book/10.1057/9781137496058" target="_blank" rel="noopener">A Neurophenomenology of Awe and Wonder: Towards a Nonreductionist Cognitive Science</a></em>. Palgrave Macmillan, 2015.</li>
+      </ul>
+      <h3 class="sub">Edited</h3>
+      <ul class="entries">
+        <li><em><a href="https://link.springer.com/book/10.1007/978-3-319-52214-2" target="_blank" rel="noopener">Place, Space and Hermeneutics</a></em>. Springer Press, 2017. 37 chapters, 531 pages.</li>
+      </ul>
+      <h3 class="sub">Book Series Edited</h3>
+      <ul class="entries">
+        <li>Uchenna Okeja &amp; Bruce Janz, series editors. <em><a href="https://www.bloomsbury.com/us/series/african-philosophy-critical-perspectives-and-global-dialogue/" target="_blank" rel="noopener">African Philosophy: Critical Perspectives and Global Dialogue</a></em>. Lexington Books / Bloomsbury. 19 titles published since 2016.</li>
+      </ul>
+      <h3 class="sub">Journal Guest Editing</h3>
+      <ul class="entries">
+        <li>Co-guest editor (with Tamara Seiler), <em>Free Space: Reconfiguring Interdisciplinary Theory and Practice</em>. Special Issue of <em>History of Intellectual Culture</em>, 2003/2004.</li>
+      </ul>
+    </section>
+
+    <!-- CHAPTERS -->
+    <section class="rsection" id="chapters">
+      <h2>Chapters in Books</h2>
+      <h3 class="sub">Refereed</h3>
+      <ul class="entries">
+        <li>"Enactivist Cognition and Ubuntu" in Jed Forman, ed., <em>Routledge Handbook of Global Cognitive Science of Religion</em>. Forthcoming.</li>
+        <li>"Heidegger and Being Digital: AI, Cognition, and the Question of Non-Human Dwelling" in Axel Karamercan, ed., <em>Resituating Heidegger's Topology of Being</em>. Bloomsbury, Forthcoming.</li>
+        <li>"Thinking In Place and With Place" in Anke Graness, ed., <em>Places of African Philosophy</em>. Forthcoming.</li>
+        <li>"Transhumanism and Moral Enhancement" in Amara Chimakonam, ed., <em><a href="https://link.springer.com/book/9783032226716" target="_blank" rel="noopener">Transhumanism in Africa</a></em>. Springer, forthcoming June 2026.</li>
+        <li>"Orality as Philosophical Performance" in Anke Graness, ed., <em>Orality and Philosophy</em>. Forthcoming.</li>
+        <li>"Orality Imagines a Future" in Anke Graness, ed., <em>Orality and Philosophy</em>. Forthcoming.</li>
+        <li>"The Grey Zone of Decolonization" in Simone Maddanu et al., eds., <em>The Routledge International Handbook of Postcolonial Sociologies</em>. Routledge, Forthcoming.</li>
+        <li>"Big and Large Data" in Michael Butler &amp; Ian Werkheiser, eds., <em>Finding Our Place in the Digital World</em>. Springer Nature, Forthcoming.</li>
+        <li>"Peripherality, Non-Philosophy and Ecology in African Philosophy" in <em><a href="https://www.routledge.com/African-Philosophy-and-Deep-Ecology/UyiAbudu-Behrens-Imafidon/p/book/9781032770239" target="_blank" rel="noopener">African Philosophy and Deep Ecology</a></em>. Routledge, 2025.</li>
+        <li>"Personhood in African Philosophy and the Possibility of Social, Psychological, and Cognitive Science" in <em><a href="https://www.routledge.com/African-Philosophy-and-its-Association-with-Psychology-and-the-Social-Sciences/Hackett-Alike-Godley-Smith-Inusah/p/book/9781032487878" target="_blank" rel="noopener">African Philosophy and its Association with Psychology and the Social Sciences</a></em>. Routledge, forthcoming Sept. 2026.</li>
+        <li>"Thad Metz, Meaning as Fundamentality, and African Philosophy" in Molefe, Munamato &amp; Rodrigues, eds., <em>Thaddeus Metz</em>. Wits University Press. Forthcoming.</li>
+        <li>"Spaces of Virtue in Universities" in Ingrid Stefanovic, ed., <em><a href="https://utorontopress.com/9781487552497/conversations-on-ethical-leadership/" target="_blank" rel="noopener">Conversations on Ethical Leadership</a></em>. University of Toronto Press, 2024.</li>
+        <li>"African Philosophy and the Question of the Future" in <em><a href="https://link.springer.com/referenceworkentry/10.1007/978-3-030-77898-9_46-1" target="_blank" rel="noopener">Handbook of African Philosophy</a></em>. Springer, 2023.</li>
+        <li>"Oruka, Odinga, and Pragmatic Sagacity" in Kresse &amp; Nyarwath, eds., <em><a href="https://rowman.com/ISBN/9781666903850/" target="_blank" rel="noopener">New Approaches to Sage Philosophy</a></em>. Lexington Books, 2023: 123–140.</li>
+        <li>"Play, World, and the Human" in Farin &amp; Malpas, eds., <em><a href="https://sunypress.edu/Books/H/Heidegger-and-the-Human" target="_blank" rel="noopener">Heidegger and the Human</a></em>. SUNY Press, 2022: 185–203.</li>
+        <li>"The Universal and the Individual, the Global and the Local" in <em><a href="https://www.e-elgar.com/shop/usd/handbook-of-culture-and-glocalization-9781839109003.html" target="_blank" rel="noopener">Handbook of Culture and Glocalization</a></em>. Edward Elgar, 2022: 61–75.</li>
+        <li>"Ethnophilosophy and the Wellspring of Philosophy in Africa" in <em><a href="https://link.springer.com/book/10.1007/978-3-030-78897-1" target="_blank" rel="noopener">Ethnophilosophy and the Search for the Wellspring of African Philosophy</a></em>. Springer, 2021: 3–15.</li>
+        <li>"The Place That Is Not Here – Derrida's Africa and the Haunting of Place" in <em><a href="https://rowman.com/ISBN/9781498581899/" target="_blank" rel="noopener">Derrida and Africa</a></em>. Lexington Books, 2019: 1–16.</li>
+        <li>"Mogobe Ramose, Cosmopolitanism, and the Being to Come" in <em>The Tenacity of Truthfulness: Mogobe Ramose</em>. Mkuki na Nyota, 2019: 251–270.</li>
+        <li>"Refiguring the scholarly process, rethinking university practice" in <em>Philosophy on the Border</em>. UKZN Press, 2019: 54–70.</li>
+        <li>"Hermeneutics, Self-Knowledge and Self-Interpretation" in <em><a href="https://link.springer.com/book/10.1007/978-3-319-98646-3" target="_blank" rel="noopener">Third-Person Self-Knowledge, Self-Interpretation, and Narrative</a></em>. Springer, 2018: 159–175.</li>
+        <li>"Virtual Place and Virtualized Place" in <em><a href="https://www.routledge.com/The-Phenomenology-of-Real-and-Virtual-Places/Champion/p/book/9781032094366" target="_blank" rel="noopener">The Phenomenology of Real and Virtual Places</a></em>. Routledge, 2018: 60–75.</li>
+        <li>"The Edges of (African) Philosophy" in <em><a href="https://www.routledge.com/Debating-African-Philosophy/Hull/p/book/9781138344969" target="_blank" rel="noopener">Debating African Philosophy</a></em>. Routledge, 2018: 213–227.</li>
+        <li>"Peripherality and Non-Philosophy in African Philosophy" in <em><a href="https://www.routledge.com/African-Philosophy-and-Environmental-Conservation/Chimakonam/p/book/9780367263065" target="_blank" rel="noopener">African Philosophy and Environmental Conservation</a></em>. Routledge, 2018: 9–23.</li>
+        <li>"Is Place a Text?" in <em>Place, Space and Hermeneutics</em>. Springer, 2017: 23–34.</li>
+        <li>"Introduction" in <em>Place, Space and Hermeneutics</em>. Springer, 2017: 1–5.</li>
+        <li>"Unprecedented Experience and Levinas's Heideggerian Idolatry of Place" in <em><a href="https://rowman.com/ISBN/9781786600295/" target="_blank" rel="noopener">Place and Phenomenology</a></em>. Rowman and Littlefield, 2017: 281–295.</li>
+        <li>"The Geography of African Philosophy" in <em>The Handbook of African Philosophy</em>. Palgrave-Macmillan, 2017: 155–166.</li>
+        <li>"Elements of Philosophy-in-Place: Learning from African Philosophy" in <em>Orte des Denkens – Places of Thinking</em>. Verlag Karl Alber, 2017: 149–163.</li>
+        <li>"Instrumentalization in Universities and the Creative Potential of Race" in <em>Being At 'Home'</em>. UKZN Press, 2015: 273–296.</li>
+        <li>"Hermeneutics and Intercultural Understanding" in <em><a href="https://www.routledge.com/The-Routledge-Companion-to-Hermeneutics/Malpas-Gander/p/book/9781138574632" target="_blank" rel="noopener">Routledge Companion to Philosophical Hermeneutics</a></em>. Routledge, 2014: 474–485.</li>
+        <li>"Why Boehme Matters Today" in <em><a href="https://www.routledge.com/An-Introduction-to-Jacob-Boehme/Hessayon-Apetrei/p/book/9781138549159" target="_blank" rel="noopener">An Introduction to Jacob Boehme</a></em>. Routledge, 2013: 279–293.</li>
+        <li>"Forget Deleuze" in <em><a href="https://link.springer.com/book/10.1057/9781137030801" target="_blank" rel="noopener">Postcolonial Literatures and Deleuze</a></em>. Palgrave Macmillan, 2012: 21–36.</li>
+        <li>"Philosophical Issues in Ethnophysiography" in <em><a href="https://benjamins.com/catalog/clu.4" target="_blank" rel="noopener">Landscape in Language</a></em>. John Benjamins, 2011: 101–119.</li>
+        <li>"The Water is Wide: Risking Tears in the Met, and Elsewhere" in <em>On the Verge of Tears</em>. Cambridge Scholars Press, 2010: 12–22.</li>
+        <li>"Thinking Like a Mountain: Ethics and Place as Travelling Concepts" in <em><a href="https://link.springer.com/book/10.1007/978-90-481-2611-8" target="_blank" rel="noopener">New Visions of Nature</a></em>. Springer, 2009: 181–195.</li>
+        <li>"Making a Scene and Dwelling in Place" in <em>Imaging Place</em>. Textual Studies in Canada, 2009: 145–154. Also in <em><a href="http://www.rhizomes.net/issue18/janz/index.html" target="_blank" rel="noopener">Rhizomes</a></em> 18 (2008).</li>
+        <li>"Philosophy As If Place Mattered: The Situation of African Philosophy" in <em><a href="https://www.bloomsbury.com/us/what-philosophy-is-9780826472427/" target="_blank" rel="noopener">What Philosophy Is</a></em>. Continuum, 2004: 103–115.</li>
+        <li>"Universities in Times of National Crisis: the Cases of Rwanda and Burundi" in <em>Globalizing Africa</em>. Africa World Press, 2003: 465–482.</li>
+        <li>"Alterity, Dialogue, and African Philosophy" in <em><a href="https://www.wiley.com/en-us/Postcolonial+African+Philosophy%3A+A+Critical+Reader-p-9780631203407" target="_blank" rel="noopener">Postcolonial African Philosophy</a></em>. Basil Blackwell, 1997: 221–238.</li>
+      </ul>
+      <h3 class="sub">Invited</h3>
+      <ul class="entries">
+        <li>"Philosophical Questions, Flowing Like Currents" in <em>Philosophy for the Curious</em>. The Curious Academic Publishing, 2015.</li>
+        <li>"Philosophy-in-Place and Texts Out of Place" in <em><a href="https://press.uottawa.ca/migrating-texts-and-traditions.html" target="_blank" rel="noopener">Migrating Texts and Traditions</a></em>. University of Ottawa Press, 2012: 287–303.</li>
+        <li>"The Concept as Object, Mode, and Catalyst in African Thought" in <em>African Philosophy and the Future of Africa</em>. CRVP, 2011: 171–187.</li>
+        <li>"African Philosophy" in <em><a href="https://cup.columbia.edu/book/columbia-companion-to-twentieth-century-philosophies/9780231142038" target="_blank" rel="noopener">The Edinburgh / Columbia Companion to 20th Century Philosophies</a></em>. 2007: 689–701. Republished in <em>Atuolu Omalu</em>, 2014.</li>
+      </ul>
+    </section>
+
+    <!-- PAPERS -->
+    <section class="rsection" id="papers">
+      <h2>Journal Articles</h2>
+      <h3 class="sub">Refereed</h3>
+      <ul class="entries">
+        <li>"What If Philosophy Was Part Of This World?" <em><a href="https://www.thenounscholar.nou.edu.ng/" target="_blank" rel="noopener">The NOUN Scholar</a></em>. Forthcoming.</li>
+        <li>"Binaries and Tuan's Humanism: The Challenge of Neo-Gnosticism." <em><a href="https://doi.org/10.1080/2373566X.2025.2544555" target="_blank" rel="noopener">GeoHumanities</a></em>, October 2025.</li>
+        <li>"Questions and Engagements on Aribiah David Attoe's Groundwork." <em><a href="https://www.ajol.info/index.php/ajct/article/view/239950/226816" target="_blank" rel="noopener">Arumaruka</a></em> 2:2 (2022): 22–33.</li>
+        <li>"The Limits of Individualism and the Potential for Friendliness in Thad Metz's A Relational Moral Theory." <em><a href="http://africanphilosophicalinquiry.com/" target="_blank" rel="noopener">The African Philosophical Inquiry</a></em>, Fall 2023.</li>
+        <li>"Conversational Thinking, Logic, and the Making of Meaning." <em><a href="https://cspafrica.org/wp-content/uploads/2022/02/6-Janz-Conversational-Thinking-Logic-and-the-Making-of-Meaning.pdf" target="_blank" rel="noopener">Arumaruka</a></em> 1:2 (2021): 106–123.</li>
+        <li>"What Philosophy Can Learn from The African Novel of Ideas." <em><a href="https://www.cambridge.org/core/journals/cambridge-journal-of-postcolonial-literary-inquiry/article/what-african-philosophy-can-learn-from-jeannemarie-jacksons-the-african-novel-of-ideas/9721F10AE06F4A2CC5E3D828D33319D1" target="_blank" rel="noopener">Cambridge Journal of Postcolonial Literary Inquiry</a></em> 9:2 (2022).</li>
+        <li>Cathy Davidson &amp; Bruce Janz, "Theory Into Practice: Julie Thompson Klein's 'Boundary Work'." <em><a href="https://interdisciplinarystudies.org/docs/Vol37_2019_No2/09_Vol.37_No.2_pp_130-142_Davidson_Janz.pdf" target="_blank" rel="noopener">Issues in Interdisciplinary Studies</a></em> 37:2 (2019): 130–142.</li>
+        <li>Shaun Gallagher &amp; Bruce Janz, "Solitude, Self and Autonomy." <em><a href="https://www.disciplinefilosofiche.it/en/" target="_blank" rel="noopener">Discipline Filosofiche</a></em> 28:2 (2018): 159–175.</li>
+        <li>"Awe and Wonder in the Urban Built Environment." <em><a href="https://www.anycorp.com/store/log42?category=Log" target="_blank" rel="noopener">Log</a></em> 42 (2018): 145–152.</li>
+        <li>"Dialogue and Listening." <em>Dialogues in Human Geography</em> 8:2 (2018): 124–127.</li>
+        <li>"The Problem of Method in African Philosophy." <em><a href="https://social-epistemology.com/2018/07/31/the-problem-of-method-in-african-philosophy-bruce-janz/" target="_blank" rel="noopener">SERRC</a></em> 7:8 (2018): 1–7.</li>
+        <li>"Free Space in the Academy." <em><a href="https://www.aaup.org/reports-publications/journal-academic-freedom/volume-7" target="_blank" rel="noopener">The Journal of Academic Freedom</a></em>, Fall 2016.</li>
+        <li>"Conversation in Place and About Place." <em><a href="https://scholarworks.iu.edu/iupjournals/index.php/jwp/article/view/635" target="_blank" rel="noopener">Journal of World Philosophies</a></em> 1 (2016): 41–50.</li>
+        <li>"Philosophy-in-Place and the Provenance of Dialogue." <em>South African Journal of Philosophy</em> 34:4 (2015): 480–490. Republished in <em><a href="https://www.routledge.com/Contrasts-and-contests-about-philosophy/Ramose/p/book/9781138223479" target="_blank" rel="noopener">Contrasts and Contests About Philosophy</a></em>, Routledge, 2017.</li>
+        <li>"The Location(s) of Philosophy." <em>Philosophia Africana</em> 16:1 (2014): 9–22.</li>
+        <li>Gallagher, Reinerman-Jones, Sollins &amp; Janz, "Using a simulated environment to investigate experiences reported during space travel." <em><a href="https://www.tandfonline.com/doi/pdf/10.1080/1463922X.2013.869370" target="_blank" rel="noopener">Theoretical Issues in Ergonomics Science</a></em> 15:4 (2014): 376–394.</li>
+        <li>Reinerman-Jones, Sollins, Gallagher &amp; Janz, "Neurophenomenology: An Integrated Approach to Exploring Awe and Wonder." <em>South African Journal of Philosophy</em> 32:4 (2013): 295–309.</li>
+        <li>"Watsuji Tetsuro and Fu-do." <em>Journal of Global Ethics</em> 7:2 (2011): 173–184.</li>
+        <li>"Shame and Silence." <em>South African Journal of Philosophy</em> 30:3 (2011): 462–471.</li>
+        <li>"Paulin Hountondji, 'African Philosophy: Myth and Reality'." <em>Philosophical Papers</em> 39:1 (2010): 117–134.</li>
+        <li>"Reason and Rationality in Eze's On Reason." <em>South African Journal of Philosophy</em> 27:4 (2008): 296–309.</li>
+        <li>"The Terror of the Place." <em>Ethics, Place and Environment</em> 11:2 (2008): 189–201.</li>
+        <li>"Places that Disasters Leave Behind." <em>FACS</em> 9 (2006–07): 33–51.</li>
+        <li>"Whistler's Fog and the Aesthetics of Place." <em><a href="http://www.reconstruction.ws/053/janz.shtml" target="_blank" rel="noopener">Reconstruction</a></em> 5:3 (2005).</li>
+        <li>"Walls and Borders: The Range of Place." <em>City and Community</em> 4:1 (2005): 87–94.</li>
+        <li>"The Territory Is Not The Map." <em>Philosophy Today</em> 45:4/5 (2001): 388–400. Also <em>Philosophia Africana</em> 5:1 (2002): 1–18.</li>
+        <li>"Debt and Duty: Kant, Derrida, and African Philosophy." <em><a href="http://www.janushead.org/gwu-2001/janz.cfm" target="_blank" rel="noopener">Janus Head</a></em>, Winter 2001.</li>
+        <li>"Thinking Wisdom: The Hermeneutical Basis of Sage Philosophy." <em>African Philosophy</em> 11:1 (1998): 57–71.</li>
+        <li>"Response to 'Samadhi and Peter Wimsey'." <em>Studies in Religion</em> 25:2 (1996): 209–13.</li>
+        <li>"'But it doesn't make sense to me': Frustrations in interdisciplinarity and the liberal arts." <em>Dianoia</em> 4:2 (1995): 90–97.</li>
+        <li>"Mysticism and understanding: Steven Katz and his critics." <em>Studies in Religion</em> 24:1 (1995): 77–94.</li>
+        <li>"Reason, induction, and true religion in Hume." <em>Dialogue</em> 27:4 (1988): 721–726.</li>
+      </ul>
+      <h3 class="sub">Invited</h3>
+      <ul class="entries">
+        <li>"Place in Relph's Place and Placelessness." <em>Environmental and Architectural Phenomenology</em>, June 2026.</li>
+        <li>Janz et al., "COVID-19 Forced Social Distancing and Isolation." <em>Ethics in Progress</em> 11:1 (2020): 20–60.</li>
+        <li>"Notes on Place, Philosophy, and Non-Philosophy." <em>Environmental and Architectural Phenomenology</em>, Fall 2014.</li>
+        <li>"Landscape, Language, and Experience." <em>Environmental and Architectural Phenomenology</em> 21:1 (2010): 20–25.</li>
+        <li>"Coming to Place." <em><a href="http://www.arch.ksu.edu/seamon/janz.html" target="_blank" rel="noopener">Environmental and Architectural Phenomenology</a></em> 15:3 (2004): 11–15.</li>
+      </ul>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="rsection" id="reviews">
+      <h2>Reviews, Encyclopedia &amp; Shorter Work</h2>
+      <h3 class="sub">Review Essays — Refereed</h3>
+      <ul class="entries">
+        <li>"Bodies on Display: Bodies: The Exhibition." <em><a href="http://www.jcrt.org/" target="_blank" rel="noopener">Journal for Cultural and Religious Theory</a></em> 7:1 (2005): 103–114.</li>
+        <li>"Between the Particular and the Universal." <em><a href="http://lit.polylog.org/4/ejb-en.htm" target="_blank" rel="noopener">Polylog</a></em> 4 (2003).</li>
+      </ul>
+      <h3 class="sub">Book Reviews</h3>
+      <ul class="entries two-col">
+        <li>Charlie Hailey, <em>The Porch</em>. <em><a href="https://muse.jhu.edu/pub/23/article/903431" target="_blank" rel="noopener">Environment, Space, Place</a></em> 15:1 (2023): 142–147.</li>
+        <li>Sudye Cauthen, <em>Southern Comforts</em>. <em>Florida Historical Quarterly</em> 87:1 (2008): 126–128.</li>
+        <li>Achille Mbembe, <em>On the Postcolony</em>. <em>H-Africa</em>, 2002.</li>
+        <li>Higgs, Light &amp; Strong, eds., <em>Technology and the Good Life?</em> <em>Philosophy and Geography</em> 5:2 (2002): 247–9.</li>
+        <li>Barry Hallen, <em>The Good, The Bad, and The Beautiful</em>. <em>Philosophy in Review</em> 21:5 (2001): 343–345.</li>
+        <li>George Allan, <em>Rethinking College Education</em>. <em>Philosophy in Review</em> 18:4 (1998): 235–236.</li>
+        <li>William McNamara, <em>Christian Mysticism</em>. <em>Dialogue And Alliance</em> 11 (1997): 166–168.</li>
+        <li>Julie Thompson Klein, <em>Interdisciplinarity</em>. <em>Dianoia</em> 3:2 (1994): 138–140.</li>
+        <li>Donald Evans, <em>Spirituality and Human Nature</em>. <em>Dialogue</em> 34:2 (1994): 406–409.</li>
+        <li>Andrew Weeks, <em>Boehme</em>. <em>Dialogue</em> 33:4 (1994): 762–764.</li>
+        <li>Maurice Friedman, <em>Martin Buber and the Eternal</em>. <em>Eidos</em> 7:1 (1988): 91–98.</li>
+        <li>David Pailin, <em>Groundwork of Philosophy of Religion</em>. <em>Eidos</em> 5:2 (1986): 240–244.</li>
+      </ul>
+      <h3 class="sub">Encyclopedia Contributions</h3>
+      <ul class="entries">
+        <li>"Jacob Boehme," <em>Europe 1450 to 1789: Encyclopaedia of the Early Modern World</em>. Charles Scribner's Sons, 2003.</li>
+        <li>"Comprehension," "Nothingness," "Reflection," "Reflexivity," in V. Y. Mudimbe, ed., <em>Encyclopaedia of African Religions and Philosophy</em>. Kluwer.</li>
+      </ul>
+      <h3 class="sub">Other Writing</h3>
+      <ul class="entries">
+        <li>"Virtual Experience in Keith Harder's Children of Icarus Series," exhibition catalogue, Penticton Art Gallery, 2013/2014.</li>
+        <li>"Emmanuel Eze in memoriam." <em>South African Journal of Philosophy</em> 27:4 (2008): 282–284.</li>
+        <li>(with Emmanuel Eze) "'Uprooted African Am I': Jacques Derrida 1930–2004." <em>Philosophia Africana</em> 8:1 (2005): 79–82.</li>
+        <li>(with Tamara Seiler) "Introduction to Free Space." <em>History of Intellectual Culture</em>, 2003.</li>
+        <li>Periodic columnist, "Educated Guesses / Second Thoughts," <em>Camrose Canadian</em>, 1996–1999.</li>
+        <li>"Truth in Poetry." <em>The Cresset</em> 57:9 (1994): 12–14.</li>
+      </ul>
+    </section>
+
+    <!-- KEYNOTES -->
+    <section class="rsection" id="keynotes">
+      <h2>Keynotes &amp; Significant Plenary Presentations</h2>
+      <ul class="entries">
+        <li><span class="yr">2025</span> "Thinking In Place and With Place," Opening Plenary, Places of African Philosophies, <a href="https://www.uni-hildesheim.de" target="_blank" rel="noopener">University of Hildesheim</a>, Germany. <a href="https://www.youtube.com/watch?v=DnWAyVJZXUQ&t=665s" target="_blank" rel="noopener">[video]</a></li>
+        <li><span class="yr">2025</span> "Big and Large Data," Plenary, Finding Our Place in the Digital World, University of Texas Rio Grande.</li>
+        <li><span class="yr">2024</span> "What If Philosophy Was Part Of This World?" Keynote, The Humanities in the 4IR, National Open University of Nigeria, Abuja.</li>
+        <li><span class="yr">2024</span> "What If Philosophy Was Part Of This World?" Philosophy and Film, University of Bayreuth.</li>
+        <li><span class="yr">2024</span> "Transhumanism and Moral Enhancement," Transhumanism in Africa Colloquium. <a href="https://www.youtube.com/watch?v=aZZl7dJEdko&t=697s" target="_blank" rel="noopener">[video]</a></li>
+        <li><span class="yr">2024</span> "Where is the African Future in Afrofuturism?" Keynote, Zora Neale Hurston Conference.</li>
+        <li><span class="yr">2023</span> "Orality as Philosophical Performance," Closing Plenary, University of Hildesheim, Germany.</li>
+        <li><span class="yr">2023</span> Conversation with Tendayi Sithole, Africa Multiple Cluster of Excellence, Bayreuth. <a href="https://www.youtube.com/watch?v=BExT98-BmEE" target="_blank" rel="noopener">[video]</a></li>
+        <li><span class="yr">2021</span> "Play and Becoming-Human in African Philosophy," Keynote, 4th Biennial African Philosophy World Conference, Nnamdi Azikiwe University, Nigeria.</li>
+        <li><span class="yr">2019</span> "How Do We Speak Of Our Place? Achille Mbembe's World," Association for Philosophy and Literature, Klagenfurt.</li>
+        <li><span class="yr">2017</span> "Cross-Disciplinary Collaboration in Digital Humanities," Plenary, Science of Team Science Conference, Clearwater Beach.</li>
+        <li><span class="yr">2016</span> "Peripherality and Non-Philosophy in African Philosophy," UNICAL Conference, Calabar, Nigeria.</li>
+        <li><span class="yr">2016</span> "The Edges of (African) Philosophy," Philosophy in Africa lecture series, UCT, Cape Town.</li>
+        <li><span class="yr">2016</span> "The Place That Is Not Here – Derrida's Africa," Cornell University.</li>
+        <li><span class="yr">2015</span> "Dialogues and Dialects," St. Augustine College, Johannesburg.</li>
+        <li><span class="yr">2015</span> "Free Space in the Academy," D.C.S. Oosthuizen Memorial Lecture, Rhodes University.</li>
+        <li><span class="yr">2014</span> "Creating Concepts: The Case of African Philosophy," University of Zurich.</li>
+        <li><span class="yr">2014</span> "Hacking the Urban Unconscious," Affective Cities II, Toronto.</li>
+        <li><span class="yr">2014</span> "Are There Limit Conditions for Philosophical Habitation?" Torture and Solitary Confinement, Memphis.</li>
+        <li><span class="yr">2013</span> "The Location(s) of Philosophy," American Philosophical Association, Baltimore.</li>
+        <li><span class="yr">2013</span> "Instrumentalization in Universities," Rhodes University.</li>
+        <li><span class="yr">2013</span> "Digital Place and Urban Space," Culture of Cities Conference, New York.</li>
+        <li><span class="yr">2013</span> Lectures on Chinavine and Folk Art, Anhui University of Science and Technology, China.</li>
+        <li><span class="yr">2013</span> "The Places that are Africa," FAU Undergraduate Conference Keynote.</li>
+        <li><span class="yr">2010</span> "Why Boehme Matters Today," Closing Plenary, Oxford University.</li>
+        <li><span class="yr">2008</span> "Landscape as Place," Landscape in Language, Albuquerque.</li>
+        <li><span class="yr">2008</span> "Reason and Rationality in Eze's On Reason," Keynote, Rhodes University.</li>
+        <li><span class="yr">2007</span> "African Philosophy as Philosophy-in-Place," Keynote, Johannesburg.</li>
+        <li><span class="yr">2007</span> "Thinking Like a Mountain," New Visions of Nature, University of Nijmegen.</li>
+        <li><span class="yr">2006</span> "Hermeneutics and Anthropology," Zentrum Moderner Orient.</li>
+        <li><span class="yr">2006</span> "What Does it Mean To Do Philosophy-In-Place?" Jacques Maritain Society, York University.</li>
+        <li><span class="yr">2003</span> "The Anatopistic Mystic," University of Alabama, Huntsville.</li>
+      </ul>
+    </section>
+
+    <!-- PRESENTATIONS -->
+    <section class="rsection" id="presentations">
+      <h2>Presentations</h2>
+      <h3 class="sub">Refereed (selected)</h3>
+      <ul class="entries">
+        <li><span class="yr">2022</span> "Big and Large Data," SPEP Digital Worlds Workshop.</li>
+        <li><span class="yr">2021</span> "Loneliness and its Others," Bentley University. <a href="https://videos.bentley.edu/media/t/1_z29pvdty" target="_blank" rel="noopener">[video]</a></li>
+        <li><span class="yr">2018</span> "Questions, Problematics and Events in African Philosophy," Rhodes University.</li>
+        <li><span class="yr">2017</span> "Awe, Wonder, and the Health of the Built Environment," Yale University.</li>
+        <li><span class="yr">2016</span> "Creating and Activating Concepts in Place," 11th East-West Philosophers' Conference, University of Hawai'i.</li>
+        <li><span class="yr">2015</span> "The Future of African Philosophy," African Studies Association, San Diego.</li>
+        <li><span class="yr">2015</span> "We're World Class!: Orlando's Successive Attempts at Self-Definition," Culture of Cities, Liverpool.</li>
+        <li><span class="yr">2015</span> "Conceptualizing DH for Multiple Audiences," Digital Humanities 2015, Sydney.</li>
+        <li><span class="yr">2013</span> "Elements of Philosophy-in-Place," Places of Thinking, Vienna.</li>
+        <li><span class="yr">2013</span> "Phenomenology and Ethnophilosophy," World Congress of Philosophy, Athens.</li>
+        <li><span class="yr">2013</span> "Deleuze and Code," Deleuze Studies Conference, Lisbon.</li>
+        <li><span class="yr">2013</span> "The Betweenness of Code," IASESP, University of Florida.</li>
+        <li><span class="yr">2010</span> "Forget Deleuze," Deleuze Studies Conference, Amsterdam.</li>
+        <li><span class="yr">2007</span> "Philosophy-in-Place and the Limits of Dialogue," ASCP, Tasmania.</li>
+        <li><span class="yr">2005</span> "The Terror of the Place," American Studies Association, Washington DC.</li>
+        <li><span class="yr">2005</span> "Places that Disasters Leave Behind," Popular Culture Association, San Diego.</li>
+        <li><span class="yr">2002</span> "Philosophy as if Place Mattered," Philosophy As… Conference, University of London.</li>
+        <li><span class="yr">2000</span> "Can African Proverbs be the Basis for African Philosophy?" CAAS, Edmonton.</li>
+        <li><span class="yr">1998</span> "Transdisciplinarity as a Model of Post/Disciplinarity," Generating Surprises, Banff.</li>
+        <li><span class="yr">1991</span> "Jacob Boehme's concept of will," Canadian Philosophical Association, Kingston.</li>
+      </ul>
+      <h3 class="sub">Invited (selected)</h3>
+      <ul class="entries">
+        <li><span class="yr">2025</span> "Metaquestions and Hermeneutics," University of Fort Hare, South Africa.</li>
+        <li><span class="yr">2025</span> "What Large Language Model AI Can Tell Us About Questioning," University of Cape Town.</li>
+        <li><span class="yr">2025</span> "Metaquestions and the Act of Philosophical Questioning," Rhodes University.</li>
+        <li><span class="yr">2025</span> "Metaquestions and Cognition in Philosophy," STIAS, South Africa.</li>
+        <li><span class="yr">2024</span> "Interviews, Dialogues, Conversations on Screen," University of Bayreuth.</li>
+        <li><span class="yr">2022</span> "African Philosophy and Enactivist Cognition" — overviews and book launches, Hildesheim &amp; Bayreuth.</li>
+        <li><span class="yr">2021</span> "African Philosophy as Enactivism," ISCIA Speaker Series. <a href="https://www.youtube.com/watch?v=A9dP-A8hyuY&t=1651s" target="_blank" rel="noopener">[video]</a></li>
+        <li><span class="yr">2018</span> "How Do We Speak Of Our Place?" WISER, University of the Witwatersrand.</li>
+        <li><span class="yr">2016</span> "What Is African Philosophy?" University of Cape Town.</li>
+        <li><span class="yr">2014</span> Multiple lectures across South African universities (Free State, Fort Hare, Rhodes, Wits, Johannesburg).</li>
+        <li><span class="yr">2011</span> "Shame and Silence," University of Memphis.</li>
+        <li><span class="yr">2008</span> Lectures at Fort Hare, Rhodes, Stellenbosch, and Wits, South Africa.</li>
+        <li><span class="yr">1998–99</span> Lectures at the University of Nairobi, including the H. Odera Oruka Commemorative Lectures.</li>
+        <li><span class="yr">1992</span> "Journalism and the life-world," Kitchener-Waterloo Record seminar.</li>
+      </ul>
+    </section>
+
+    <!-- WORKSHOPS -->
+    <section class="rsection" id="workshops">
+      <h2>Workshops &amp; Conferences Organized</h2>
+      <ul class="entries">
+        <li><span class="yr">2025</span> Places of African Philosophies, University of Hildesheim. <a href="https://www.uni-hildesheim.de/glophi/2025/02/18/places-of-african-philosophies-workshop/" target="_blank" rel="noopener">[info]</a></li>
+        <li><span class="yr">2025</span> Finding Our Place in the Digital World, University of Texas Rio Grande.</li>
+        <li><span class="yr">2018</span> Flickering Landscapes: The Image of Migration, UCF. <a href="https://flickeringlandsc.cah.ucf.edu/" target="_blank" rel="noopener">[info]</a></li>
+        <li><span class="yr">2017</span> Chair, HASTAC Conference. <a href="http://hastac2017.org/" target="_blank" rel="noopener">[info]</a></li>
+        <li><span class="yr">2015</span> Flickering Landscapes: Florida's Landscape, History, and Identity, UCF.</li>
+        <li><span class="yr">2013</span> Exploring Awe and Wonder, Templeton Conference, UCF.</li>
+        <li><span class="yr">2007</span> Flickering Landscapes: Cinematic Representations of the West, Moab.</li>
+        <li><span class="yr">2002</span> CIRLA: Playing the Wild Card, Banff.</li>
+        <li><span class="yr">2001</span> CIRLA / Calgary: Paradigms Lost and Paradigms Gained.</li>
+        <li><span class="yr">1998</span> CIRLA: Generating Surprises, Banff.</li>
+        <li><span class="yr">1996</span> CIRLA: Liberal Arts and the Future of University Education, Banff.</li>
+      </ul>
+    </section>
+
+    <!-- MEDIA -->
+    <section class="rsection" id="media">
+      <h2>Interviews, Videos &amp; Podcasts</h2>
+      <ul class="entries">
+        <li><a href="https://www.youtube.com/watch?v=yR_Cn6h83mw" target="_blank" rel="noopener">Beyond Recognition: African Philosophy as a Source of Conceptual Innovation</a> (GloPhi).</li>
+        <li><a href="https://www.youtube.com/watch?v=R57fxvLMjX4" target="_blank" rel="noopener">What does it mean to live in this world and flourish as human beings?</a></li>
+        <li><a href="https://atlantictheory.org/e50/" target="_blank" rel="noopener">Conversations in Atlantic Theory</a> — African Philosophy and Enactivist Cognition.</li>
+        <li><a href="https://www.youtube.com/watch?v=RlD1fjaGb4A&list=PLOYpLsbWIPJYYiqWb7ofmBqjBVOuCS68w" target="_blank" rel="noopener">African Philosophy Conversations</a> (10-episode series).</li>
+        <li><a href="http://thedrunkenodyssey.com/2013/06/29/episode-55-bruce-janz/" target="_blank" rel="noopener">The Drunken Odyssey, Episode 55</a> — art and writing.</li>
+        <li><a href="https://thedrunkenodyssey.com/2017/11/08/episode-286-bruce-janz/" target="_blank" rel="noopener">The Drunken Odyssey, Episode 286</a> — democracy.</li>
+      </ul>
+    </section>
+
+    <!-- EDITORIAL -->
+    <section class="rsection" id="editorial">
+      <h2>Editorial &amp; Advisory Work</h2>
+      <h3 class="sub">Editorial Boards</h3>
+      <ul class="entries">
+        <li><em>Thought and Practice</em> (Philosophy Association of Kenya), 2008–</li>
+        <li><em><a href="https://www.pdcnet.org/philafricana/Editorial-Team" target="_blank" rel="noopener">Philosophia Africana</a></em>, 1996–2003, 2011–</li>
+        <li>European Science Foundation College of Expert Reviewers, 2017–</li>
+        <li><em>Philosophies in Conversation</em>, 2021–</li>
+        <li><em><a href="https://philevents.org/event/show/71754" target="_blank" rel="noopener">Journal of Contemporary African Philosophy</a></em>, 2018–</li>
+        <li><em>Ueberweg: Grundriss der Geschichte der Philosophie</em> — History of African philosophy series.</li>
+        <li><em><a href="http://africanphilosophicalinquiry.com/" target="_blank" rel="noopener">The African Philosophical Inquiry</a></em> (Nigeria).</li>
+      </ul>
+      <h3 class="sub">Refereeing</h3>
+      <ul class="entries">
+        <li>Referee for 35+ journals and publishers including Bloomsbury, Cambridge, MIT Press, Routledge, SUNY Press, Sage, <em>Journal of the American Philosophical Association</em>, <em>Phenomenology and the Cognitive Sciences</em>, and <em>South African Journal of Philosophy</em>.</li>
+        <li>Grant referee for the NEH, National Humanities Center, SSHRC (Canada), and South Africa's National Research Foundation.</li>
+      </ul>
+    </section>
+
+    <!-- SUPERVISION -->
+    <section class="rsection" id="supervision">
+      <h2>Graduate Supervision</h2>
+      <h3 class="sub">Ph.D. Dissertation Direction</h3>
+      <ul class="entries two-col">
+        <li>Evan Wallace, Texts &amp; Technology (defended April 2026)</li>
+        <li>Kevin Jardaneh, Texts &amp; Technology (2016)</li>
+        <li>John Bork, Texts &amp; Technology (2015)</li>
+        <li>Nada Chehab, Texts &amp; Technology (2020– )</li>
+      </ul>
+      <h3 class="sub">External Examiner — Ph.D. &amp; M.A. Theses (selected)</h3>
+      <ul class="entries">
+        <li><span class="yr">2025</span> Howard Ivan Snoyman, University of the Witwatersrand (Bioethics).</li>
+        <li><span class="yr">2024</span> Siseko H. Kumalo, University of Pretoria (Political Science).</li>
+        <li><span class="yr">2023</span> Amara Esther Ani, University of Pretoria.</li>
+        <li><span class="yr">2022</span> Veeran Naicker, University of Cape Town (Sociology).</li>
+        <li><span class="yr">2021</span> Samuel Olusegun, University of New South Wales, Australia.</li>
+        <li><span class="yr">2020</span> Andrew Turk, Murdoch University, Australia.</li>
+        <li><span class="yr">2019</span> Aribiah David Attoe, University of Johannesburg.</li>
+        <li><span class="yr">2017</span> Sara Nickerson-White, University of Waterloo (Sociology).</li>
+        <li><span class="yr">2013</span> Rianna Oelofsen, Rhodes University.</li>
+        <li><span class="yr">2008</span> Bernard Matolino, University of KwaZulu-Natal.</li>
+        <li><span class="yr">2006</span> Brian Harris, Australian National University.</li>
+      </ul>
+      <p class="meta-line" style="margin-top:0.8rem;font-size:0.85rem;">Plus 25+ UCF Texts &amp; Technology and interdisciplinary thesis committees (2010–present).</p>
+    </section>
+
+    <!-- TEACHING -->
+    <section class="rsection" id="teaching">
+      <h2>Teaching</h2>
+      <h3 class="sub">University of Central Florida (2003– ) — Selected Courses</h3>
+      <ul class="entries two-col">
+        <li>HUM 3423 African Humanities (14×)</li>
+        <li>PHI 5665 Knowledge, Responsibility and Society (13×)</li>
+        <li>HUM 5803 Theories and Methods of the Humanities (6×)</li>
+        <li>PHI 4804 Critical Theory (5×)</li>
+        <li>HUM 4394 Place and Space (4×)</li>
+        <li>ENG 6810 Theories of Texts and Technology (4×)</li>
+        <li>HUM 3394 Representations of Place and Space (3×)</li>
+        <li>HUM 3830 Introduction to Digital Humanities (3×)</li>
+        <li>HUM 3805 Critical Theory in the Humanities (3×)</li>
+        <li>PHI 3905 African Philosophy (2×)</li>
+        <li>REL 3432 Roots of Western Mysticism (2×)</li>
+        <li>HUM 4931 Deleuze and Guattari (1×)</li>
+      </ul>
+      <h3 class="sub">Other Institutions</h3>
+      <ul class="entries">
+        <li><a href="https://www.ru.ac.za" target="_blank" rel="noopener">Rhodes University</a> (2008): Graduate Seminar, "Philosophy-in-Place."</li>
+        <li>Augustana / <a href="https://www.ualberta.ca/augustana" target="_blank" rel="noopener">University of Alberta</a> (1992–2003): 18 distinct courses including Hermeneutics, Philosophy of Western Mysticism, African Philosophy and Postcolonial Studies.</li>
+        <li><a href="https://www.uonbi.ac.ke" target="_blank" rel="noopener">University of Nairobi</a> (1998–99): History of Modern Philosophy, Philosophy of Language, MA Seminar on African Philosophy.</li>
+        <li>Wilfrid Laurier University (1990–92); <a href="https://uwaterloo.ca" target="_blank" rel="noopener">University of Waterloo</a> (1989–91); Renison College; Trent University (1989–90).</li>
+      </ul>
+    </section>
+
+    <!-- SERVICE -->
+    <section class="rsection" id="service">
+      <h2>Service &amp; Administration</h2>
+      <h3 class="sub">Consulting &amp; Review</h3>
+      <ul class="entries">
+        <li>NEH-Mellon Panel for Reviewing Digital Publication, 2017.</li>
+        <li>NEH Fellowship Review Panels, 2009 &amp; 2013.</li>
+        <li>External program reviews: University of Tennessee Chattanooga (2009); Brandon University (2006); Dowling College (2004).</li>
+        <li>NRF (South Africa) and tenure/promotion reviews for 25+ scholars internationally.</li>
+      </ul>
+      <h3 class="sub">Committee Service</h3>
+      <ul class="entries">
+        <li>Centernet International Executive Council, 2018–</li>
+        <li>Steering Committee, HASTAC, 2016–</li>
+        <li>UCF Tenure and Promotion Committee, 2018–2020.</li>
+        <li>CAH Tenure and Promotion Committee, 2013–2017, 2021–</li>
+        <li>Chair, Texts &amp; Technology Admissions Committee, 2022–</li>
+        <li>Numerous departmental, college, and university committees at UCF (2003–) and Augustana (1992–2003).</li>
+      </ul>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  &copy; 2026 Bruce B. Janz &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="http://bbja.nz" target="_blank" rel="noopener">bbja.nz</a>
+</footer>
+
+</body>
+</html>
